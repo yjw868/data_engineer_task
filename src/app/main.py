@@ -21,29 +21,54 @@ def parse(x):
     return None, None
 
 
+# @app.route('/calculate', methods=['POST'])
+# def calculate():
+#     """
+#     The endpoint that perform the computation
+#     """
+
+#     if not request.get_data():
+#         return "Missing message in the body of the request.", 501
+
+#     try:
+#         # Ingest the data from the body here, trasform in a Python list
+#         # of tuples
+#         _ = [parse(x) for x in StringIO(
+#             request.get_data().decode('utf-8')).getvalue().split()]
+
+#         # Transform the list in a Pandas dataframe, perform the
+#         # calculation, return the cov matrix in the response converted
+#         # into a list (should replace the empty list below)
+
+#         return json.dumps([]), 200
+#     except Exception:
+#         return "internal error", 500"
+
+
 @app.route("/calculate", methods=["POST"])
 def calculate():
     """
-	The endpoint that perform the computation
-	"""
+    The endpoint that perform the computation
+    """
 
     if not request.get_data():
         return "Missing message in the body of the request.", 501
 
-    # try:
-    # Ingest the data from the body here, trasform in a Python list
-    # of tuples
-    #     _ = [parse(x) for x in StringIO(
-    #         request.get_data().decode('utf-8')).getvalue().split()]
+    try:
+        # Ingest the data from the body here, trasform in a Python list
+        # of tuples
+        input = [
+            parse(x)
+            for x in StringIO(request.get_data().decode("utf-8")).getvalue().split()
+        ]
 
-    #     # Transform the list in a Pandas dataframe, perform the
-    #     # calculation, return the cov matrix in the response converted
-    #     # into a list (should replace the empty list below)
+        # Transform the list in a Pandas dataframe, perform the
+        # calculation, return the cov matrix in the response converted
+        # into a list (should replace the empty list below)
 
-    #     return json.dumps([]), 200
-    # except Exception:
-    #     return "internal error", 500
-    return "Hi"
+        return json.dumps([input * 2]), 200
+    except Exception:
+        return "internal error", 500
 
 
 @app.route("/")
