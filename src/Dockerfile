@@ -2,7 +2,7 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6
 
 RUN apt-get update
-RUN apt-get install -y build-essential
+RUN apt-get install -y python3-pip
 # RUN apk add --no-cache --update \
 # 	python3 python3-dev gcc \
 # 	gfortran musl-dev g++ \
@@ -21,8 +21,15 @@ RUN pip3 install --upgrade pip
 
 WORKDIR /app
 
+# Backup the default app files.  You could also delete these
+RUN mkdir bak && \
+	mv main.py uwsgi.ini bak
+
 # Copy the Flask application's file in /app
 COPY ./ ./
 
 # install our dependencies
 RUN pip3 install -r requirements.txt
+
+# Make /app/* available to be imported by Python globally to better support several
+ENV PYTHONPATH=/app

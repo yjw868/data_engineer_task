@@ -84,9 +84,9 @@ def calculate():
         return "internal error", 500
 
 
-# @app.route("/")
-# def hello():
-#     return "It Works!"
+@app.route("/")
+def hello():
+    return "It Works!"
 
 
 if __name__ == "__main__":
