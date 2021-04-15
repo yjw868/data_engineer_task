@@ -13,6 +13,7 @@ import numpy as np
 from app.invalid_usage import InvalidUsage
 from app.validation import validate_greeting
 from mypkg.greetings import say_hello_to
+from mypkg.calculate import parse_number, filter_input
 
 
 app = Flask(__name__)
@@ -44,7 +45,7 @@ def calculate():
         # Ingest the data from the body here, trasform in a Python list
         # of tuples
         raw_input = [
-            parse(x)
+            parse_number(x)
             for x in StringIO(request.get_data().decode("utf-8")).getvalue().split()
         ]
 
@@ -54,10 +55,11 @@ def calculate():
 
         # raw_input type in str, need to convert them to float before convert them into DataFrame
         # TODO add a filter to remove corrupted input
-        input = [(float(x), float(y)) for x, y in raw_input]
-        df = pd.DataFrame(input)
-        print(df)
-        final_input = df.to_numpy()
+        # input = [(float(x), float(y)) for x, y in raw_input]
+        # df = pd.DataFrame(input)
+        # print(df)
+        # final_input = df.to_numpy()
+        final_input = filter_input(raw_input)
         # print(final_input)
         cov_matrix = np.cov(final_input)
         # jason.dumps only accpept str, convert result into str
@@ -66,8 +68,8 @@ def calculate():
         return json.dumps(result), 200
     except Exception:
         # return "internal error", 500
-        return json.dumps(np.array2string(df.head()))
-        # return json.dumps(str(final_input.head()))
+        # return json.dumps(np.array2string(df.head()))
+        return json.dumps(str(final_input.head()))
 
 
 @app.route("/")
