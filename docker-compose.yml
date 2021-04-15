@@ -1,0 +1,15 @@
+# NOTE: add the configuration for binding ports
+
+version: '3.5'
+
+services:
+  app:
+    build: .
+    image: app:local-test
+    container_name: app
+	restart: unless-stopped
+	build: src
+	ennvironment: 
+		FLASK_ENV:  'development'
+	ports:
+		- "0.0.0.0:5000:5000"
