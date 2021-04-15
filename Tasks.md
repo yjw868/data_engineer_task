@@ -13,19 +13,22 @@
   - Main.py  
     **Not suppose to modify any other part of the code outside the function decorated with the endpoint router of Flash**
     - [ ] endpoint - /calculate
-    - [ ] Calculate covariance matrix
+    - [x ] Calculate covariance matrix
     - [ ] Cleaning input if needed
       - [ ] removing **nan**
       - [ ] removing corrupted values
-    - [ ] Transform the data input into Padas dataframe
-    - [ ] Return serialised in a JSON-compliant format
+    - [x] Transform the data input into Padas dataframe
+    - [x] Return serialised in a JSON-compliant format
 
   - HTTP request
-    - [ ] POST:  curl -X POST -H "Content-Type: text/plain" -d
+    - [x] POST:  curl -X POST -H "Content-Type: text/plain" -d
     - [ ] Request should work in case of corrupted values
 
 - docker
-  - [ ] use docker-compose
-  - [ ] use image from <https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/>
-  - [ ] port binding in order to make the microservice listen to port **5000**
-  - [ ] Copy the Flask code in the /app directory in the container (read the linked documentation of the image for further details in order to run the container).
+  - [x] use docker-compose
+  - [x] use image from <https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/>
+  - [x] port binding in order to make the microservice listen to port **5000**
+  - [x] Copy the Flask code in the /app directory in the container (read the linked documentation of the image for further details in order to run the container).
+
+- Test case
+  - [ ] Test

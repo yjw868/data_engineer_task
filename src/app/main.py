@@ -61,9 +61,9 @@ def calculate():
 
         return json.dumps(result), 200
     except Exception:
-        # return "internal error", 500
+        return "internal error", 500
         # return json.dumps(np.array2string(df.head()))
-        return json.dumps(str(final_input.head()))
+        # return json.dumps(str(final_input.head()))
 
 
 @app.route("/")
