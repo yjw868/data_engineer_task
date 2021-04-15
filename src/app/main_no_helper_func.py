@@ -6,10 +6,6 @@ import re
 import pandas as pd
 import numpy as np
 
-from app.invalid_usage import InvalidUsage
-from app.validation import validate_greeting
-from mypkg.greetings import say_hello_to
-
 
 app = Flask(__name__)
 
@@ -25,6 +21,30 @@ def parse(x):
         return y[0], y[1]
 
     return None, None
+
+
+# @app.route('/calculate', methods=['POST'])
+# def calculate():
+#     """
+#     The endpoint that perform the computation
+#     """
+
+#     if not request.get_data():
+#         return "Missing message in the body of the request.", 501
+
+#     try:
+#         # Ingest the data from the body here, trasform in a Python list
+#         # of tuples
+#         _ = [parse(x) for x in StringIO(
+#             request.get_data().decode('utf-8')).getvalue().split()]
+
+#         # Transform the list in a Pandas dataframe, perform the
+#         # calculation, return the cov matrix in the response converted
+#         # into a list (should replace the empty list below)
+
+#         return json.dumps([]), 200
+#     except Exception:
+#         return "internal error", 500"
 
 
 @app.route("/calculate", methods=["POST"])
@@ -67,19 +87,8 @@ def calculate():
 
 
 @app.route("/")
-def test():
-    return "It Works!"
-
-
-@app.route("/hello", methods=["POST"])
 def hello():
-    errors = validate_greeting(request)
-    if errors is not None:
-        print(errors)
-        raise InvalidUsage(errors)
-    greetee = request.json.get("greete", None)
-    response = {"message": say_hello_to(greetee)}
-    return jsonify(response)
+    return "It Works!"
 
 
 if __name__ == "__main__":
