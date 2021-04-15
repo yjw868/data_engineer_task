@@ -14,3 +14,8 @@
   - This is error is real hidden when testing with default app.man
   - #TODO Haven't figured out way to display the error directly when run the main.py
   - This became apparent when run pytest
+
+- pip install error during the docker build
+  - the lastest numpy and pandas installed successfully in my venv, but failed during the build
+  - After i bit retesting then i realised it cause was the python version in the base docker image doesn't match my venv
+  - D
