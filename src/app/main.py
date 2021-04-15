@@ -1,10 +1,14 @@
 from flask import Flask
 from flask import request
+from flask import jsonify
 import json
 from io import StringIO
 import re
 import pandas as pd
+
+# from typing_extensions import final
 import numpy as np
+
 
 from app.invalid_usage import InvalidUsage
 from app.validation import validate_greeting
@@ -54,20 +58,20 @@ def calculate():
         df = pd.DataFrame(input)
         print(df)
         final_input = df.to_numpy()
-
+        # print(final_input)
         cov_matrix = np.cov(final_input)
         # jason.dumps only accpept str, convert result into str
         result = np.array2string(cov_matrix, precision=16)
 
         return json.dumps(result), 200
     except Exception:
-        return "internal error", 500
-        # return json.dumps(np.array2string(df.head()))
+        # return "internal error", 500
+        return json.dumps(np.array2string(df.head()))
         # return json.dumps(str(final_input.head()))
 
 
 @app.route("/")
-def test():
+def home():
     return "It Works!"
 
 
@@ -80,6 +84,13 @@ def hello():
     greetee = request.json.get("greete", None)
     response = {"message": say_hello_to(greetee)}
     return jsonify(response)
+
+
+@app.route("/test", methods=["POST"])
+def test():
+    data = request.get_data().decode("utf-8")
+    return json.dumps([data])
+    # return "POST request"
 
 
 if __name__ == "__main__":
