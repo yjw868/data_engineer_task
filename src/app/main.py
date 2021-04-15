@@ -72,7 +72,7 @@ def calculate():
         # TODO add a filter to remove corrupted input
         input = [(float(x), float(y)) for x, y in raw_input]
         df = pd.DataFrame(input)
-        print(df)
+        debug.print(df)
         final_input = df.to_numpy()
 
         cov_matrix = np.cov(final_input)
@@ -81,7 +81,9 @@ def calculate():
 
         return json.dumps(result), 200
     except Exception:
-        return "internal error", 500
+        # return "internal error", 500
+        # return json.dumps(np.array2string(df.head()))
+        return json.dumps(str(df.head()))
 
 
 @app.route("/")
