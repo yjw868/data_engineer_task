@@ -35,7 +35,10 @@ def test_connection(client):
 
 def test_cal_request(client):
     response = client.post("/test", data=clean_input)
-    assert response.get_data().decode("utf-8") == "test"
+    assert (
+        response.get_data().decode("utf-8")
+        == '["(1.115,2.119), (1.108,2.220), (1.101,2.209), (1.110,2.209), (1.112,2.212))"]'
+    )
 
 
 def test_parse_accept():
@@ -49,7 +52,7 @@ def test_parse_accept():
 
 def test_parse_catch():
     y = [parse(x) for x in StringIO(clean_input)]
-    assert y == ["(1.115, 2.119), (1.108, 2.220), (1.101, 2.209), (1.110, 2.209)"]
+    assert y == ["(1.115,2.119), (1.108,2.220), (1.101,2.209), (1.110,2.209)"]
 
 
 def test_data_filter():
@@ -60,5 +63,5 @@ def test_data_filter():
     print(df)
     final_input = df.to_numpy()
     print(final_input)
-    assert len(df.index) == 5
+    assert len(df.columns) == 2
 
