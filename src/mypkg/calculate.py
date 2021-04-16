@@ -24,6 +24,10 @@ def parse(x):
 
 
 def parse_number(x):
+    """
+	Accept int and float only
+	"""
+
     try:
         y = re.match("^\((\d*\.?\d*),(\d*\.?\d*)\),?$", x).group(1, 2)
 
@@ -51,6 +55,13 @@ def convt_float(x):
 
 
 def filter_input(x):
+    """
+	Turn list of tuple to 2 den df
+	Filter out None from the raw input
+	Convert each column to number
+	Return numpy array
+	"""
+
     df = pd.DataFrame(x, columns=["A", "B"])
     df = df[~df["A"].isnull()]
     df["A"] = pd.to_numeric(df["A"])

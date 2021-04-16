@@ -1,3 +1,6 @@
+import app.main
+
+
 def test_info(client):
     response = client.get("/")
     result = response.get_json()
