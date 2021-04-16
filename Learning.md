@@ -3,35 +3,40 @@
 - Github initial push error
   - Error when run ```git push origin master```
   - When create the repo on github, the default name is main
-  - Solution: change the name on Github
+  - Solution: change the name from main to master on Github
   
 - Docker building error with "tiangolo/uwsgi-nginx-flask-docker"
   - pandas can't be installed with alpine version as it doesn't have the compiler to build Numpy
   - Solution: Use the full version of python image instead
-    - "tiangolo/uwsgi-nginx-flask:python3.6"
+    - "tiangolo/uwsgi-nginx-flask:python3.8"
 
 - pip install dependency issue
-  - This is error is real hidden when testing with default app.man
-  - [x]TODO Haven't figured out way to display the error directly when run the main.py
-  - This became apparent when run pytest
-  - Add additional test to check status, connectio
+  - This error is real hidden when testing with default app.man
+  - [x]TODO Haven't figured out way to display the error directly when run the main.py. test_main etc added
+  - This issue became apparent when run pytest
+  - Add additional tests to check status, connection to ensure the server is running correctly
 
 - pip install error during the docker build
   - the lastest numpy and pandas installed successfully in my venv, but failed during the build
-  - After i bit retesting then i realised it cause was the python version in the base docker image doesn't match my venv
-  - D
-
+  - After retesting then i realised the cause was due to python version in the base docker image doesn't match my venv
+  
 - app.main error when running with docker build
   - the app worked find with local version of python3.8
   - Initially the docker image use python3.6
   - I didn't realise the numpy and pandas dependency are quite different between those two version
   - Solution:
+    - Update docker base image to 3.8
+    - Use the latest numpy and pandas
+    - Haven't got enough time to install python3.6 locally to test it which was required from the task
 
 - 'docker build' error: "failed to solve with frontend dockerfile.v0"
   - fail to build the image after updating Docker Desktop
   - clean / Purge data didn't work
   - reinstall docker desktop which trigger wsl2 crash report
-  - solution: reinstiall docker desktop and reboot the machine
+  - solution:
+    - download the latest docker from the official website
+    - reinstiall docker desktop and reboot the machine
+    - Purge data
 
 - Indentation error
   - Each time on save need to run vscode convert space to tab
