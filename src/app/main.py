@@ -81,7 +81,7 @@ def hello():
     if errors is not None:
         print(errors)
         raise InvalidUsage(errors)
-    greetee = request.json.get("greete", None)
+    greetee = request.json.get("greetee", None)
     response = {"message": say_hello_to(greetee)}
     return jsonify(response)
 

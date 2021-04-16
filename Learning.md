@@ -12,8 +12,9 @@
 
 - pip install dependency issue
   - This is error is real hidden when testing with default app.man
-  - #TODO Haven't figured out way to display the error directly when run the main.py
+  - [x]TODO Haven't figured out way to display the error directly when run the main.py
   - This became apparent when run pytest
+  - Add additional test to check status, connectio
 
 - pip install error during the docker build
   - the lastest numpy and pandas installed successfully in my venv, but failed during the build
@@ -45,3 +46,6 @@
     - update the docker image to python3.8
     - use numpy 1.16.5
     - user pandas 1.2.4
+
+- Pytest failed on app.main import
+  - solution: follow the structure based on <https://stackoverflow.com/questions/10253826/path-issue-with-pytest-importerror-no-module-named-yadayadayada>
