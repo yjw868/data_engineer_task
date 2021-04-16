@@ -60,7 +60,7 @@ def calculate():
         # print(df)
         # final_input = df.to_numpy()
         final_input = filter_input(raw_input)
-        # print(final_input)
+        print(final_input)
         cov_matrix = np.cov(final_input)
         # jason.dumps only accpept str, convert result into str
         result = np.array2string(cov_matrix, precision=16)

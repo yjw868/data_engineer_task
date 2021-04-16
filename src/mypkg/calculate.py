@@ -6,7 +6,7 @@ from io import StringIO
 
 import pandas as pd
 
-# import numpy as np
+import numpy as np
 import re
 
 
@@ -53,5 +53,9 @@ def convt_float(x):
 def filter_input(x):
     df = pd.DataFrame(x, columns=["A", "B"])
     df = df[~df["A"].isnull()]
-    return df
+    df["A"] = pd.to_numeric(df["A"])
+    df["B"] = pd.to_numeric(df["B"])
+    # result = df.to_records(index=False)
+    result = df.to_numpy()
+    return result
 
