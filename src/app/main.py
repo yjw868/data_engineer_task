@@ -5,10 +5,7 @@ import json
 from io import StringIO
 import re
 import pandas as pd
-
-# from typing_extensions import final
 import numpy as np
-
 
 from app.invalid_usage import InvalidUsage
 from app.validation import validate_greeting
@@ -54,11 +51,7 @@ def calculate():
         # into a list (should replace the empty list below)
 
         # raw_input type in str, need to convert them to float before convert them into DataFrame
-        # TODO add a filter to remove corrupted input
-        # input = [(float(x), float(y)) for x, y in raw_input]
-        # df = pd.DataFrame(input)
-        # print(df)
-        # final_input = df.to_numpy()
+
         final_input = filter_input(raw_input)
         print(final_input)
         cov_matrix = np.cov(final_input)
@@ -67,14 +60,12 @@ def calculate():
 
         return json.dumps(result), 200
     except Exception:
-        # return "internal error", 500
-        # return json.dumps(np.array2string(df.head()))
-        return json.dumps(str(final_input.head()))
+        return "internal error", 500
 
 
 @app.route("/")
 def home():
-    return "It Works!"
+    return "It Works! At home dir."
 
 
 @app.route("/hello", methods=["POST"])
