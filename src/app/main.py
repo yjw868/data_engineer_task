@@ -56,7 +56,7 @@ def calculate():
         print(final_input)
         cov_matrix = np.cov(final_input)
         # jason.dumps only accpept str, convert result into str
-        result = np.array2string(cov_matrix, precision=16)
+        result = np.array2string(cov_matrix, separator=",", precision=16)
 
         return json.dumps(result), 200
     except Exception:
