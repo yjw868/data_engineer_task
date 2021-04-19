@@ -71,3 +71,26 @@ def filter_input(x):
     result = df.values
     return result
 
+
+def calculate_cov_matrix(request):
+    """
+	Input in the format (1,3), (2,3)
+	Return the cov_matrix in the format \
+		[[0.5040080000000002 0.5582240000000002] [0.5582240000000002 0.6182720000000002]] as text
+	"""
+    # msg_decoded = msg.value.decode("utf-8")
+    # print(msg_decoded)
+
+    try:
+        raw_input = [
+            parse_number(x)
+            for x in StringIO(request.get_data().decode("utf-8")).getvalue().split()
+        ]
+        final_input = filter_input(raw_input)
+        cov_matrix = np.cov(final_input)
+        result = np.array2string(cov_matrix, separator=",", precision=16)
+        return result
+        # return raw_input
+    except Exception:
+        # return msg_decoded
+        return "internal error"
