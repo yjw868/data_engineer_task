@@ -74,7 +74,7 @@ def test_main_request(client):
     result = response.get_json()
 
     assert response.status_code == 200
-    assert result is not None
+    # assert result is not None
     assert result == [
         [
             0.5040080000000002,
@@ -104,7 +104,7 @@ def test_main_request_corrupted_data(client):
     result = response.get_json()
 
     assert response.status_code == 200
-    assert result is not None
+    # assert result is not None
     assert result == [
         [
             0.5040080000000002,

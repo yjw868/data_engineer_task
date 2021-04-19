@@ -1,5 +1,5 @@
 # can't use Alpine version as it does hav the C stuff to build pandas and numpy
-FROM tiangolo/uwsgi-nginx-flask:python3.8
+FROM tiangolo/uwsgi-nginx-flask:python3.6
 
 RUN apt-get update
 RUN apt-get install -y python3-pip

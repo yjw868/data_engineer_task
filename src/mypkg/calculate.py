@@ -67,6 +67,7 @@ def filter_input(x):
     df["A"] = pd.to_numeric(df["A"])
     df["B"] = pd.to_numeric(df["B"])
     # result = df.to_records(index=False)
-    result = df.to_numpy()
+    # result = df.to_numpy()
+    result = df.values
     return result
 

@@ -60,7 +60,8 @@ def calculate():
 
         return json.dumps(result), 200
     except Exception:
-        return "internal error", 500
+        # return "internal error", 500
+        return final_input
 
 
 @app.errorhandler(InvalidUsage)
@@ -95,4 +96,3 @@ def test():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=5000)
-
